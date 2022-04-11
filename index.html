@@ -36,8 +36,40 @@
 			<div class="two">
 				<label for="input-book">Enter book:</label>
 				<input type="text" placeholder="enter a book..." name="input-book" id="input-book">
-				<button class="submit">submit</button>
+				<button class='submit' type="submit">Submit</button>
 			</div>
+			<div>
+				<button class="display">Display Book List</button>
+			</div>
+			<!-- Modal -->
+			<div>
+				<button data-modal-target="#modal" class="add-book">NEW BOOK</button>
+			</div>
+			<div class="modal" id="modal">
+				<div class="modal-header">
+					<div class="header-title">New Book</div>
+					<button data-close-button class="close-button">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<label for="title">Title:</label>
+						<input type="text" id="title" name="title">
+					</div>
+					<div>
+						<label for="author">Author:</label>
+						<input type="text" id="author" name="author">
+					</div>
+					<div>
+						<label for="pages">Pages:</label>
+						<input type="text" id="pages" name="pages">
+					</div>
+					<div>
+						<label for="read">Read?</label>
+						<input type="checkbox" id="read" name="read">
+					</div>
+				</div>
+			</div>
+			<div id="overlay"></div>
 		</div>
 		<script type="text/javascript" src="./main.js"></script>
 	</body>
