@@ -33,21 +33,28 @@
 				<div class="date">Current Date</div>
 			</section>
 			<h1>Reading List</h1>
-			<div class="two">
-				<label for="input-book">Enter book:</label>
-				<input type="text" placeholder="enter a book..." name="input-book" id="input-book">
-				<button class='submit' type="submit">Submit</button>
-			</div>
-			<div>
-				<button class="display">Display Book List</button>
-			</div>
+
+			<!-- Reading List -->
+			<section class="reading-list">
+				<!-- book card -->
+				<div class="card">
+					<div class="card-img"></div>
+						<div class="card-info">
+							<p class="text-title">Card title</p>
+							<p class="text-body">Lorem Ipsum dolor sit amet</p>
+							<button class="card-button">Read More</button>
+						</div>
+				</div>
+			</section>
+			<!-- end -->
+			
 			<!-- Modal -->
 			<div>
 				<button data-modal-target="#modal" class="add-book">NEW BOOK</button>
 			</div>
 			<div class="modal" id="modal">
 				<div class="modal-header">
-					<div class="header-title">New Book</div>
+					<div class="header-title">Add New Book</div>
 					<button data-close-button class="close-button">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -66,6 +73,9 @@
 					<div>
 						<label for="read">Read?</label>
 						<input type="checkbox" id="read" name="read">
+					</div>
+					<div>
+						<button class="submit-new-book">Submit</button>
 					</div>
 				</div>
 			</div>
