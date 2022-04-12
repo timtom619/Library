@@ -51,11 +51,14 @@ submitBook.addEventListener('click', addBookToLibrary);
 
 // Reading List container
 const readingList = document.querySelector('.reading-list');
+
+let card = '';
 function addBookToLibrary() {
   let title = document.getElementById('title').value;
   let author = document.getElementById('author').value;
   let pages = document.getElementById('pages').value;
   let read = document.getElementById('read').checked;
+  let imageUrl = '';
 
   const book = new Book(author, title, pages, read);
   
@@ -85,10 +88,30 @@ function addBookToLibrary() {
 
   const cardBtn = document.createElement('button');
   cardBtn.className = 'card-button';
-  cardBtn.innerText = 'Read More';
+  cardBtn.innerText = 'Read Again';
   cardInfo.appendChild(cardBtn);
 
   readingList.appendChild(container);
+
+  fetchBookList();
+   // Fetch book listings
+   function fetchBookList() {
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${book['title']}+inauthor:${book['author']}`)
+    .then(res => res.json()) // parse response as JSON
+    .then(data => {
+      imageUrl = (data.items[0].volumeInfo.imageLinks['thumbnail']);
+      // Create img in DOM
+      let img = document.createElement('img');
+      img.className = 'img-thumbnail'
+      img.src = imageUrl;
+      cardImg.appendChild(img);
+    })
+    .catch(err => {
+        console.log(`error ${err}`)
+    });
+  }
+
+  console.log(imageUrl);
   console.log(myLibrary);
 }
 
