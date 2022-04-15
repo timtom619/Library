@@ -32,7 +32,7 @@ body {
 /* LAYOUT
 /*******************************************/
 .container {  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 10% 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
@@ -45,19 +45,48 @@ body {
   height: 100vh;
 }
 
-.search-input { grid-area: search-input; }
+.search-input { 
+  grid-area: search-input; 
+  display: flex;
+  justify-content: center;
+}
 
 .book-details-top { 
   grid-area: book-details-top; 
   background-color: #F8F9FB;
-  border-bottom: 1px solid #d5d5de;
+  border-bottom: 1px solid #F8F9FB;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
+.book-details-top::after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  background: #d5d5de;
+  top: 100%;
+  width: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.test {
+  width: 190px;
+  height: 254px;
+  border-radius: 1em;
+  padding: 1.5rem;
+  margin: 0 1rem;
+  background: #f5f5f5;
+  box-shadow: 0px 7px 20px rgba(43, 8, 37, 0.2);
+}
 .book-details-bottom { 
   grid-area: book-details-bottom; 
   background-color: #F8F9FB;
-
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 .best-seller-list { grid-area: best-seller-list; }
@@ -78,8 +107,46 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
+/* test */
+.profile-container {
+  position: relative;
+  /* border-bottom: 1px solid #d5d5de; */
+}
+.profile-container::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background: #d5d5de;
+  top: 100%;
+  width: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* div {
+  width: 100px;
+  height: 100px;
+  background: rebeccapurple;
+  margin: 1em auto;
+  position: relative;
+} */
 
+/* div::after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  background: red;
+  top: 100%;
+  width: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+/* end */
 .navigation { 
   grid-area: navigation; 
   display: flex;
@@ -89,12 +156,20 @@ body {
 .tester {
   width: 50%;
 }
-.navigation > ul {
+
+.link-section {
   height: 50%;
   list-style: none;
-  margin-left: 25%;
+  margin-left: 15%;
+  position: relative;
+  top: 5%;
 }
 
+.link-section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
 .navigation li {
   margin-bottom: 30%;
 }
@@ -166,6 +241,35 @@ body {
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+/* From uiverse.io by @adamgiebl */
+.read-now-button {
+  position: relative;
+  display: inline-block;
+  margin: 15px;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #2B4743;
+  background: transparent;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border-radius: 30px;
+  border: 2px solid #2B4743;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 0 #2B4743;
+ }
+ 
+ .read-now-button:hover {
+  color: white;
+  box-shadow: inset 0 -100px 0 0 #2B4743;
+ }
+ 
+ button:active {
+  transform: scale(0.9);
+ }
+
 .img-logo {
   width: 150px;
   height: 150px;
@@ -190,13 +294,10 @@ body {
   border-radius: 1em;
   padding: 1.5rem;
   margin: 0 1rem;
-  background: #f5f5f5;
   position: relative;
-  align-items: flex-end;
-  transition: 0.4s ease-out;
+  background: #f5f5f5;
   box-shadow: 0px 7px 20px rgba(43, 8, 37, 0.2);
- }
-
+}
  .aside-card-item {
   width: 190px;
   height: 254px;
@@ -233,11 +334,20 @@ body {
  .aside-card-img {
   width: 100%;
   height: 100%;
-  position: absolute;
   top: 0;
   left: 0;
+  position: absolute;
   background: #3B89DB;
   background: linear-gradient(to bottom, #5d9ee4, #3B89DB);
+ }
+
+ .book-details-header, .book-title, .book-details-author, .read-now-btn {
+  text-align: center;
+ }
+
+ .book-description {
+  margin: 16px 72px;
+  text-indent: 1.5rem;
  }
 
  .aside-book-cover {
@@ -371,17 +481,13 @@ body {
 html {
   scroll-behavior: smooth;
 }
-/* body {
-  margin: 0;
-  background-color: #000;
-} */
-/* h1 {
-  font-family: Arial;
-  color: red;
-  text-align: center;
-} */
+body {
+  font-family: 'Syne', sans-serif;
+}
+
 .wrapper {
   display: grid;
+  position: relative;
   grid-template-columns: repeat(3, 100%);
   overflow: hidden;
   scroll-behavior: smooth;
@@ -428,4 +534,90 @@ html {
   a.arrow__btn {
     display: none;
  }
+}
+
+.navigation div {
+  display: inline-block;
+}
+
+.nav-link1, .nav-link2, .nav-link3, .nav-link4  {
+  position: relative;
+}
+
+.note-icon-1, .notes-1, .notes-2, .notes-3, .notes-4 {
+  position: absolute;
+}
+
+.notes-1, .notes-2, .notes-3, .notes-4 {
+  left: 2.5rem;
+}
+
+.note-section-2 {
+  top: 0.6rem;
+}
+
+.note-section-3 {
+  top: 0.4rem;
+}
+
+/* LAMP*/
+.lamp {
+  width: 10em;
+  display: inline-block;
+  transform-origin: top center;
+  transform: rotate(45deg);
+  animation: lamp 3s forwards;
+}
+.bulb {
+  fill: #fbf8ca;
+  fill-opacity: 0.1;
+  animation: bulb 0.3s 0.3s 5 cubic-bezier(0.26, 1.17, 0.89, -0.74) alternate forwards;
+}
+.switch {
+  transition: transform 0.3s;
+}
+.switch:active {
+  transform: translateY(5px);
+}
+@keyframes bulb {
+  to {
+    fill-opacity: 1;
+    fill: #fbf8ca;
+ }
+}
+@keyframes lamp {
+  5% {
+    transform: rotate(-45deg);
+ }
+  10% {
+    transform: rotate(35deg);
+ }
+  15% {
+    transform: rotate(-35deg);
+ }
+  25% {
+    transform: rotate(15deg);
+ }
+  40% {
+    transform: rotate(-15deg);
+ }
+  65% {
+    transform: rotate(3deg);
+ }
+  85% {
+    transform: rotate(-1deg);
+ }
+  100% {
+    transform: rotate(0deg);
+ }
+}
+
+/* Book Shelf */
+
+.shelf {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: 1px solid red;
+  z-index: -10;
 }

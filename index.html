@@ -9,6 +9,10 @@
 		<title>Library</title>
 
 		<!-- external CSS link -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link href='https://css.gg/css' rel='stylesheet'>
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
@@ -17,7 +21,7 @@
 			<div class="logo">
 				<img class="img-logo" src="./images/Reader1.png" alt="website logo">
 			</div>
-			<div class="profile">
+			<div class="profile-container">
 				<section class="profile">
 					<div class="avatar">
 						<!-- Avatar image -->
@@ -28,16 +32,69 @@
 				</section>
 			</div>
 			<div class="navigation">
-				<ul>
-					<li><a href="#">Notes</a></li>
-					<li><a href="#">Schedule</a></li>
-					<li><a href="#">Settings</a></li>
-					<li><a href="#">Settings</a></li>
-				</ul>
+				<section class="link-section">
+					<ul>
+						<li>
+							<section class="nav-link1 note-section-1">
+								<div class="note-icon-1"><i class="gg-notes"></i></div>
+								<div class="notes-1"><a href="#">Notes</a></div>
+							</section>			
+						</li>
+						<li>
+							<section class="nav-link2 note-section-2">
+								<div class="note-icon-2"><i class="gg-calendar-dates"></i></div>
+								<div class="notes-2"><a href="#">Schedule</a></div>	
+							</section>				
+						</li>
+						<li>
+							<section class="nav-link3 note-section-3">
+								<div class="note-icon-3"><i class="gg-toolbox"></i></div>
+								<div class="notes-3"><a href="#">Settings</a></div>	
+							</section>					
+						</li>
+						<li>
+							<section class="nav-link4 note-section-4">
+								<div class="note-icon-4"><i class="gg-info"></i></div>
+								<div class="notes-4"><a href="#">About</a></div>
+							</section>						
+						</li>
+					</ul>
+				</section>
 			</div>
-			<div class="search-input"></div>
+			<div class="search-input">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 130" class="lamp">
+					<!-- bulb -->
+					<g>
+						<circle class="bulb" style="" cx="30" cy="109.3" r="10.7"/>
+					 <line style="fill:none;stroke:#D7D5AF;stroke-width:0.263;stroke-linecap:round;stroke-miterlimit:10;" x1="28.1" y1="108.1" x2="27.4" y2="113.4"/>
+					 <line style="fill:none;stroke:#D7D5AF;stroke-width:0.263;stroke-linecap:round;stroke-miterlimit:10;" x1="32" y1="108.1" x2="32.6" y2="113.4"/>
+					 <polyline style="fill:none;stroke:#D7D5AF;stroke-width:0.263;stroke-linecap:round;stroke-miterlimit:10;" points="27.8,113.5 28.3,112.8 28.8,113.5 29.6,112.8 30,113.5 30.7,112.9 31.2,113.5 31.8,112.8 32.3,113.5"/>
+					</g>
+					<!-- /bulb -->
+					<rect x="20.7" y="66.7" style="fill:#2D2D2F;" width="18.6" height="15.6"/>
+					<rect x="28.5" y="0" style="fill:#2D2D2F;" width="3" height="66.7"/>
+					<path style="fill:#2D2D2F;" d="M30,80.3c-16.6,0-30,13.4-30,30h60C60,93.8,46.6,80.3,30,80.3z"/>
+						<path style="fill:#2D2D2F;" d="M30,80.3c-16.6,0-30,13.4-30,30h60C60,93.8,46.6,80.3,30,80.3z"/>
+				<!--
+					<g class="switch">
+						<line style="fill:none;stroke:#2D2D2F;stroke-width:0.5;stroke-miterlimit:10;" x1="49" y1="100" x2="49" y2="118"/>
+						<circle style="fill:none;stroke:#2D2D2F;stroke-width:0.5;stroke-miterlimit:10;" cx="49" cy="120" r="1.6"/>
+					</g>
+				-->
+				</svg>
+			</div>
 			<div class="book-details-top">
-				<div class="aside-card">
+				<section class="book-details-top-container">
+					<h2 class="book-details-header">Book Details</h2>
+					<div class="aside-card">
+						<div class="aside-card-img"></div>
+					</div>
+					<h3 class="book-title">Title of Book</h3>
+					<div class="book-details-author">
+						<span>Author</span>
+					</div>
+				</section>
+				<!-- <div class="aside-card">
 					<div class="aside-card-item"> 
 						<div class="aside-card-img">
 							<img class="aside-book-cover" src="" alt="">
@@ -48,13 +105,21 @@
 							<button class="card-button">Read More</button> 
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
-			<div class="book-details-bottom"></div>
+			<div class="book-details-bottom">
+				<section class="book-details-bottom-container">
+					<p class="book-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores maiores iste quod id illum, nesciunt ea minima rerum illo. Amet autem nihil illum maiores quo!</p>
+					<div class="read-now-btn">
+						<button class="read-now-button">Read Now</button>
+					</div>
+				</section>
+			</div>
 			<!-- Best Sellers -->
 			<div class="best-seller-list">
 				<h1>NYTimes Best Seller</h1>
 				<div class="wrapper">
+					<div class="shelf"></div>
 				  <section id="section1">
 				    <a href="#section3" class="arrow__btn">‹</a>
 				    <div class="item">
