@@ -1,3 +1,4 @@
+
 let myLibrary = [];
 
 function Book(author,title,pages,read) {
@@ -44,13 +45,15 @@ function closeModal(modal) {
   modal.classList.remove('active')
   overlay.classList.remove('active');
 }
+//========== END ============
 
 //========== Submit New Book ============
 const submitBook = document.querySelector('.submit-new-book');
 submitBook.addEventListener('click', addBookToLibrary);
 
-// Reading List container
+// Reading List Container
 const readingList = document.querySelector('.reading-list');
+const slider = document.querySelector('.slider');
 
 let card = '';
 function addBookToLibrary() {
@@ -63,7 +66,6 @@ function addBookToLibrary() {
   const book = new Book(author, title, pages, read);
   
   myLibrary.push(book);
-  // Create new book card
   
   const container = document.createElement('div');
   container.className = 'card';
@@ -114,14 +116,55 @@ function addBookToLibrary() {
   console.log(imageUrl);
   console.log(myLibrary);
 }
+//============= Best Seller List ==================
 
-//============= Display Book List =================
-// DOM structure
-/* <div class="card"> check
-    <div class="card-img"></div> check
-    <div class="card-info"> check
-      <p class="text-title">Card title</p> check
-      <p class="text-body">Lorem Ipsum dolor sit amet</p> check
-      <button class="card-button">Read More</button> check
-    </div>
-  </div> */
+function getBestSellers() {
+  return new Promise((resolve, reject) => {
+    fetch('https://api.nytimes.com/svc/books/v3/lists.json?api-key=APIKEY&list=hardcover-fiction')
+     .then(response => {
+       return response.json();
+      }).then(data => {
+         resolve(data);
+         return resultsArr.push(data.results);
+   }
+  , error => console.log(error)) })
+}
+
+let author = [];
+let title = [];
+let resultsArr = [];
+
+getBestSellers().then(data => {
+  resultsArr.forEach((item) => {
+    for(let i = 0; i < 15; i++) {
+      author.push(item[i].book_details[0].author);
+      title.push(item[i].book_details[0].title);
+    }
+  });
+  //Render images in carousel
+  for(let i = 0; i < 15; i++) {
+    getBookImages(author[i], title[i], i);
+  }
+});
+
+function getBookImages(author, title, index) {
+  return new Promise((resolve, reject) => {
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}`)
+     .then(response => {
+       return response.json();
+      }).then(data => {
+        // grab all item selectors
+        const itemList = Array.from(document.querySelectorAll('.book-cover'));
+        // assign best seller book images to each node
+        itemList[index].src = data.items[0].volumeInfo.imageLinks.thumbnail;
+         resolve(data);
+   }
+  , error => console.log(error)) })
+}
+getBookImages(author, title);
+//=============       End        ==================
+
+
+  
+
+  
