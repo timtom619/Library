@@ -95,10 +95,12 @@ function addBookToLibrary() {
 
   readingList.appendChild(container);
 
-  fetchBookList();
+  let bookTitle = book[`title`];
+  let bookAuthor = book[`author`];
+  fetchBookList(bookTitle, bookAuthor);
    // Fetch book listings
-   function fetchBookList() {
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${book['title']}+inauthor:${book['author']}`)
+   function fetchBookList(title, author) {
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}`)
     .then(res => res.json()) // parse response as JSON
     .then(data => {
       imageUrl = (data.items[0].volumeInfo.imageLinks['thumbnail']);
@@ -112,15 +114,12 @@ function addBookToLibrary() {
         console.log(`error ${err}`)
     });
   }
-
-  console.log(imageUrl);
-  console.log(myLibrary);
 }
 //============= Best Seller List ==================
 
 function getBestSellers() {
   return new Promise((resolve, reject) => {
-    fetch('https://api.nytimes.com/svc/books/v3/lists.json?api-key=APIKEY&list=hardcover-fiction')
+    fetch('https://api.nytimes.com/svc/books/v3/lists.json?api-key=&list=hardcover-fiction')
      .then(response => {
        return response.json();
       }).then(data => {
@@ -161,9 +160,89 @@ function getBookImages(author, title, index) {
    }
   , error => console.log(error)) })
 }
-getBookImages(author, title);
+// getBookImages(author, title);
 //=============       End        ==================
 
+//============= Book Details ==================
+// Data to grab:
+// - on book click grab the src url 
+// - Grab reviews of book if user clicked in NYTimes best seller
+// - Grab description of book
+
+// When a user clicks on a book in the main section the aside section should show the Book details with the above information.
+// Put all books currently on the page in a nodeList
+const bookCover = document.querySelectorAll('.book-cover');
+// Give all elements on the page a onlick event with bookDetails()
+bookCover.forEach(book => book.addEventListener('click', bookDetails));
+// In function
+//   grab src url, book reviews, description of book, author
+//   store that data in the aside section
+let toggle = false;
+function bookDetails() {
+  if(toggle === true) clear();
+
+  let bookSrc = this.src; // img url
+  let index = this.id; // index position of book
+  let authors = [];
+  let titles = [];
+  let description = [];
+  const parentElement = document.querySelector('.book-details-top-container');
+  const bookTitle = document.querySelector('.book-title');
+  const asideCard = document.createElement('div');
+  asideCard.className = 'aside-card';
+  parentElement.insertBefore(asideCard,bookTitle);
+  
+  const asideCardImg = document.createElement('div');
+  asideCardImg.className = 'aside-card-img'
+  asideCard.appendChild(asideCardImg);
+
+  
+  const bookAuthor = document.querySelector('.book-author');
+  const bookDescription = document.querySelector('.book-description');
+  const bookCover = document.createElement('img');
+
+  getBestSellers().then(data => {
+    data.results.forEach(book => {
+      authors.push(book.book_details[0].author);
+      titles.push(book.book_details[0].title);
+      description.push(book.book_details[0].description);
+    });
+   
+    bookCover.className = 'aside-book-cover'
+    bookCover.src = bookSrc;
+    asideCardImg.appendChild(bookCover);
+
+    // Match index of clicked element with array in author
+    // Then store author 
+    bookAuthor.textContent = author[index];
+
+    // Match index of clicked element with array in title
+    // Then store title
+    bookTitle.textContent = title[index];
+
+    // Match index of clicked element with array in description
+    // Then store description
+    bookDescription.textContent = description[index];
+  });
+  toggle = true;
+}
+
+function clear() {
+  const parentElement = document.querySelector('.book-details-top-container');
+  const asideCard = document.querySelector('.aside-card');
+
+  const bookTitle = document.querySelector('.book-title');
+  const bookAuthor = document.querySelector('.book-author');
+  const bookDescription = document.querySelector('.book-description');
+  const bookCover = document.querySelector('.aside-book-cover');
+
+  bookTitle.textContent = '';
+  bookAuthor.textContent = '';
+  bookDescription.textContent = '';
+  bookCover.src = '';
+
+  parentElement.removeChild(asideCard);
+}
 
   
 
