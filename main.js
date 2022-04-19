@@ -119,7 +119,7 @@ function addBookToLibrary() {
 
 function getBestSellers() {
   return new Promise((resolve, reject) => {
-    fetch('https://api.nytimes.com/svc/books/v3/lists.json?api-key=&list=hardcover-fiction')
+    fetch('https://api.nytimes.com/svc/books/v3/lists.json?api-key=dYgc0aHOREa5S1GBlA5OFfM8sKPl54k3&list=hardcover-fiction')
      .then(response => {
        return response.json();
       }).then(data => {
