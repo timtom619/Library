@@ -59,19 +59,17 @@ let card = '';
 function addBookToLibrary() {
   let title = document.getElementById('title').value;
   let author = document.getElementById('author').value;
-  let pages = document.getElementById('pages').value;
-  let read = document.getElementById('read').checked;
   let imageUrl = '';
 
-  const book = new Book(author, title, pages, read);
+  const book = new Book(author, title);
   
   myLibrary.push(book);
-  
+
   const container = document.createElement('div');
   container.className = 'card';
 
   const cardImg = document.createElement('div');
-  cardImg.className = 'card-img';
+  cardImg.className = 'reading-list-img';
   container.appendChild(cardImg);
 
   const cardInfo = document.createElement('div');
@@ -85,7 +83,7 @@ function addBookToLibrary() {
 
   const textBody = document.createElement('p');
   textBody.className = 'text-body';
-  textBody.innerText = `${book['author']} ${book['pages']}${book['read']}`;
+  textBody.innerText = `${book['author']}`;
   cardInfo.appendChild(textBody);
 
   const cardBtn = document.createElement('button');
@@ -114,6 +112,15 @@ function addBookToLibrary() {
         console.log(`error ${err}`)
     });
   }
+  clearInput();
+}
+
+function clearInput() {
+  let title = document.querySelector('.title-input');
+  let author = document.querySelector('.author-input');
+
+  title.value = '';
+  author.value = '';
 }
 //============= Best Seller List ==================
 
@@ -160,7 +167,6 @@ function getBookImages(author, title, index) {
    }
   , error => console.log(error)) })
 }
-// getBookImages(author, title);
 //=============       End        ==================
 
 //============= Book Details ==================
@@ -244,6 +250,22 @@ function clear() {
   parentElement.removeChild(asideCard);
 }
 
+// Hide Arrow functionality in Carousel
+const arrowBtns = document.querySelectorAll('.arrow');
+arrowBtns.forEach(btn => btn.addEventListener('click', toggleHidden));
+console.log(arrowBtns);
+
+function toggleHidden() {
+  console.log(this.classList.toggle(this.value));
+}
+
+
+
+
+ 
+
   
+
+
 
   
